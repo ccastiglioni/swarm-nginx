@@ -1,0 +1,44 @@
+<br> - Iniciar o Swarm na Aplicação Docker
+
+```sh
+docker swarm init
+```
+ <br>
+- Subir serviços no Swarm
+
+```sh
+docker stack deploy -c docker-swarm.yml app
+```
+ <br>
+- Derrubar serviços no Swarm
+
+```sh
+docker stack rm app
+```
+ <br>
+- Ver serviços em execução
+
+```sh
+docker service ls
+```
+ <br>
+- Ver containers em execução
+
+```sh
+docker stats
+```
+ <br> <br>
+- Entrar em um container:
+
+```sh
+# primeiro obtenha o id do container, pode ser via 'docker stats'
+# com o id em mãos substitua '{id}' pelo id obtido
+docker exec -it {id} bash
+```
+ <br> <br>
+- Como o docker está rodando dentro do WSL, nós precisamos obter o ip do WSL para pode nos conectar a aplicação. Para isso pode ser preciso realizar esse passo a passo
+
+```sh
+apt-get install ifconfig -y && ifconfig
+# localize por 'eth0' ou semelhante, e então veja o ip em 'inet'
+```
