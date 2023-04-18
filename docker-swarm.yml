@@ -3,7 +3,7 @@ services:
   web:
     image: nginx:latest
     volumes:
-      # - ./html:/usr/share/nginx/html:ro
+      # - ./html:/usr/share/nginx/html:ro   # Aqui compartilha a pasta inteira!
       - ./html/index.html:/usr/share/nginx/html/index.html:ro
     networks:
       - global
@@ -13,7 +13,7 @@ services:
         limits:
           cpus: "1"
           memory: 256M
-          # pids: 100
+          # pids: 100 limita a qtd de processos!
         reservations:
           cpus: "0.1"
           memory: 20M
@@ -22,15 +22,15 @@ services:
     ports:
       - "80:80"
 
-  web-alt:
-    image: nginx:latest
+  web-apache:
+    image: httpd:2.4
     volumes:
       # - ./html:/usr/share/nginx/html:ro
-      - ./html/index-alt.html:/usr/share/nginx/html/index.html:ro
+      - ./html/:/usr/local/apache2/htdocs/
     networks:
       - global
     deploy:
-      replicas: 4
+      replicas: 2
       resources:
         limits:
           cpus: "1"
