@@ -25,8 +25,8 @@ services:
   web-apache:
     image: httpd:2.4
     volumes:
-      # - ./html:/usr/share/nginx/html:ro
-      - ./html/:/usr/local/apache2/htdocs/
+      - ./httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./html/:/var/www/html
     networks:
       - global
     deploy:
